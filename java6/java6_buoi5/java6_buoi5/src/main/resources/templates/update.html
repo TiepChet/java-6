@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<main class="container">
+    <form th:action="@{'/update/' + ${hangKhachHang.maHang}}" method="post" th:object="${hangKhachHang}">
+        Tên: <input th:field="*{tenHang}"> <br>
+        Mô Tả: <input th:field="*{moTa}"> <br>
+        Điểm Tối Thiểu: <input th:field="*{diemToiThieu}"> <br>
+        Trạng Thái: <input type="radio" value="0" th:field="*{trangThai}" >HĐ
+        <input type="radio" value="1" th:field="*{trangThai}" >NHĐ
+        <br>
+        <button>Update</button>
+    </form>
+</main>
+
+</body>
+</html>

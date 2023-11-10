@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Users</title>
+</head>
+<body>
+
+
+<form th:action="@{'/add'}" method="post" th:object="${hangKhachHang}">
+    Tên: <input th:field="*{tenHang}"> <br>
+    Mô Tả: <input th:field="*{moTa}"> <br>
+    Điểm Tối Thiểu: <input th:field="*{diemToiThieu}"> <br>
+    Trạng Thái: <input type="radio" value="0" th:field="*{trangThai}" >HĐ
+    <input type="radio" value="1" th:field="*{trangThai}" >NHĐ
+    <br>
+    <button>ADD</button>
+</form>
+
+<table  class="table">
+    <thead class="thead-dark">
+    <tr>
+        <th style="width: 2">Ma Hang</th>
+        <th style="width: 2">Ten Hang</th>
+        <th style="width: 2">Mo Ta</th>
+        <th style="width: 2">Diem Toi Thieu</th>
+        <th style="width: 2">Trang Thai</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+      <tr th:each="hkh:${listHKH}">
+          <td th:utext="${hkh.maHang}"></td>
+          <td th:utext="${hkh.tenHang}"></td>
+          <td th:utext="${hkh.moTa}"></td>
+          <td th:utext="${hkh.diemToiThieu}"></td>
+          <td th:utext="${hkh.trangThai==0?'HĐ':'NHĐ'}"></td>
+          <td>
+              <a th:href="@{'/delete/' + ${hkh.maHang}}">Delete</a>
+              <a th:href="@{'/detail/' + ${hkh.maHang}}">Detail</a>
+              <a th:href="@{'/view-update/' + ${hkh.maHang}}">Edit</a>
+          </td>
+      </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

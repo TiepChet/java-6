@@ -1,0 +1,55 @@
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="row g-0 gx-5 align-items-end">
+            <div class="col-lg-6">
+                <div class="section-header text-start mb-5 wow fadeInUp" data-wow-delay="0.1s"
+                    style="max-width: 500px;">
+                    <h1 class="display-5 mb-3">Your Cart</h1>
+                    <p>Tempor ut dolore lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed rebum vero dolor duo.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <!-- <th>Image</th> -->
+                    <th>Name</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Money</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat=" cart in cart.items">
+                    <td>{{cart.data.id}}</td>
+                    <!-- <th>
+                        <img class="img-fluid"  width="70" src="img/{{cart.data.image}}" alt="">
+                    </th> -->
+                    <td>{{cart.data.name}}</td>
+                    <td>
+                        <input ng-change="cart.saveToLocalStorage()" ng-model="cart.qty" type="number" min="1"></td>
+                    <td>{{cart.data.price | number:0}} Đ</td>
+                    <td>{{cart.qty * cart.data.price | number:0}} Đ</td>
+                    <td>
+                        <a class="btn btn-danger" ng-click="cart.remove(cart.data.id)" href="">
+                            Delete
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div>
+            <button ng-click="cart.clear()" class="btn btn-danger">
+                Clear
+            </button>
+            <a href="#checkout" class="btn btn-primary">
+                Checkout
+            </a>
+        </div>
+        <div ng-include="'assets/user/cart/checkout.html'"></div>
+    </div>
+</div>

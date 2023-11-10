@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<main class="container">
+
+    <form th:action="@{'/add'}" method="post" th:object="${khachHang}">
+        Tên KH: <input th:field="*{tenKhachHang}"> <br>
+        <select th:field="*{hangKhachHang}">
+            <option th:each="hkh:${listHKH}" th:value="${hkh.tenHang}">[[${hkh.tenHang}]]</option>
+        </select>
+        <button>Add</button>
+    </form>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Mã KH</th>
+            <th>Tên KH</th>
+            <th>Tên HKH</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="kh: ${listKH}">
+            <td th:text="${kh.maKhachHang}"></td>
+            <td th:text="${kh.tenKhachHang}"></td>
+            <td th:text="${kh.hangKhachHang.tenHang}"></td>
+            <td>
+                <a>Delete</a>
+                <a th:href="@{'/detail/' +${kh.maKhachHang}}">Detail</a>
+                <a>Edit</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+
+</main>
+</body>
+</html>
